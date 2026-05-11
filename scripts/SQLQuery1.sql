@@ -1,13 +1,13 @@
 /*
 =======================================================================
-PROJE ADI: E-Ticaret Veri Analizi ve Müşteri Davranışı Modelleme
-AÇIKLAMA: Bu proje, 20.000 satırlık e-ticaret veri seti (FLO) üzerinde 
-          gerçekleştirilmiş kapsamlı veri analizi çalışmalarını içermektedir. 
-          Gelişmiş SQL sorguları (Subqueries, Aggregations vb.) kullanılarak; 
-          - Müşteri Yaşam Boyu Değeri (CLTV) hesaplama altyapısı,
-          - Sipariş frekansı ve kanal bazlı ciro analizleri,
-          - İş Zekası (BI) ve karar destek sistemleri için temel KPI 
-            metrikleri oluşturulmuştur.
+PROJE ADI: E-Ticaret Veri Analizi ve MÃ¼Ã¾teri DavranÃ½Ã¾Ã½ Modelleme
+AÃ‡IKLAMA: Bu proje, 20.000 satÃ½rlÃ½k e-ticaret veri seti (FLO) Ã¼zerinde 
+          gerÃ§ekleÃ¾tirilmiÃ¾ kapsamlÃ½ veri analizi Ã§alÃ½Ã¾malarÃ½nÃ½ iÃ§ermektedir. 
+          GeliÃ¾miÃ¾ SQL sorgularÃ½ (Subqueries, Aggregations vb.) kullanÃ½larak; 
+          - MÃ¼Ã¾teri YaÃ¾am Boyu DeÃ°eri (CLTV) hesaplama altyapÃ½sÃ½,
+          - SipariÃ¾ frekansÃ½ ve kanal bazlÃ½ ciro analizleri,
+          - ÃÃ¾ ZekasÃ½ (BI) ve karar destek sistemleri iÃ§in temel KPI 
+            metrikleri oluÃ¾turulmuÃ¾tur.
 =======================================================================
 */
 
@@ -25,19 +25,19 @@ FROM INFORMATION_SCHEMA.TABLES
 
 SELECT *FROM flo_data_20K
 
---SORU-1:Kaç Farklı müşterinin alışveriş yaptığını gösterecek sorguyu yazınız.
+--SORU-1:KaÃ§ FarklÃ½ mÃ¼Ã¾terinin alÃ½Ã¾veriÃ¾ yaptÃ½Ã°Ã½nÃ½ gÃ¶sterecek sorguyu yazÃ½nÃ½z.
 SELECT COUNT(DISTINCT(master_id))
 FROM flo_data_20K;
---Soru-2:Toplam alışveriş sayısı ve cüroyu bulunuz?
+--Soru-2:Toplam alÃ½Ã¾veriÃ¾ sayÃ½sÃ½ ve cÃ¼royu bulunuz?
 SELECT
-  SUM(order_num_total_ever_offline+order_num_total_ever_online) AS TOPLAM_SIPARIS_SAYİSİ,
+  SUM(order_num_total_ever_offline+order_num_total_ever_online) AS TOPLAM_SIPARIS_SAYÃSÃ,
   ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline),2) AS TOPLAM_CIRO
 FROM flo_data_20K;
---Soru-3:Alışveriş başına düşen ortalam ciroyu bulunuz
+--Soru-3:AlÃ½Ã¾veriÃ¾ baÃ¾Ã½na dÃ¼Ã¾en ortalam ciroyu bulunuz
 SELECT 
  ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline)/SUM(order_num_total_ever_offline+order_num_total_ever_online),2)
 FROM flo_data_20K;
---Soru-4: En son alışveriş yapılan kanal (last_order_channel) üzerinden yapılan alışverişlerin toplam ciro ve alışveriş sayılarını getirecek sorguyu yazınız.  
+--Soru-4: En son alÃ½Ã¾veriÃ¾ yapÃ½lan kanal (last_order_channel) Ã¼zerinden yapÃ½lan alÃ½Ã¾veriÃ¾lerin toplam ciro ve alÃ½Ã¾veriÃ¾ sayÃ½larÃ½nÃ½ getirecek sorguyu yazÃ½nÃ½z.  
 
 SELECT 
   last_order_channel,
@@ -46,32 +46,32 @@ SELECT
 FROM flo_data_20K
 GROUP BY last_order_channel
 
---SORU-6:STORE TYPE  KIRLIMINDA ELDE EDİLEN TOPLAM CİROYU GETİREN SORGUYU YAZINIZ. 
+--SORU-6:STORE TYPE  KIRLIMINDA ELDE EDÃLEN TOPLAM CÃROYU GETÃREN SORGUYU YAZINIZ. 
 SELECT 
   store_type MAGAZA_TURU,
   ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline),2)
 FROM flo_data_20K
 GROUP BY store_type;
---SORU-7:Yıl kırılımında alışveriş sayılarını getirecek sorguyu yazınız (Yıl olarak müşterinin ilk alışveriş tarihi (first_order_date) yılınI BAZ ALINIZ)
+--SORU-7:YÃ½l kÃ½rÃ½lÃ½mÃ½nda alÃ½Ã¾veriÃ¾ sayÃ½larÃ½nÃ½ getirecek sorguyu yazÃ½nÃ½z (YÃ½l olarak mÃ¼Ã¾terinin ilk alÃ½Ã¾veriÃ¾ tarihi (first_order_date) yÃ½lÃ½nI BAZ ALINIZ)
 SELECT 
  YEAR(first_order_date) YIL,
  SUM(order_num_total_ever_offline+order_num_total_ever_online)
 FROM flo_data_20K
 GROUP BY YEAR(first_order_date)
 --ORDER BY  2 desc
---SORU-8: En son alışveriş yapılan kanal kırılımında alışveriş başına ortalama ciroyu hesaplayacak sorguyu yazınız. 
+--SORU-8: En son alÃ½Ã¾veriÃ¾ yapÃ½lan kanal kÃ½rÃ½lÃ½mÃ½nda alÃ½Ã¾veriÃ¾ baÃ¾Ã½na ortalama ciroyu hesaplayacak sorguyu yazÃ½nÃ½z. 
 SELECT last_order_channel,
   ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline)/SUM(order_num_total_ever_offline+order_num_total_ever_online),2)
 FROM flo_data_20K
 GROUP BY last_order_channel;
---SORU-9:. Son 12 ayda en çok ilgi gören kategoriyi getiren sorguyu yazınız
+--SORU-9:. Son 12 ayda en Ã§ok ilgi gÃ¶ren kategoriyi getiren sorguyu yazÃ½nÃ½z
 SELECT 
  interested_in_categories_12,
  COUNT(*) FREKANS_BILGIFISI
 FROM flo_data_20K
 GroUP BY interested_in_categories_12
 ORDER BY 2 DESC;
---SORU- 10. En çok tercih edilen store_type bilgisini getiren sorguyu yazınız. 
+--SORU- 10. En Ã§ok tercih edilen store_type bilgisini getiren sorguyu yazÃ½nÃ½z. 
 SELECT TOP 1
  store_type,
  COUNT(*) FREKANS_BILGIFISI
@@ -82,8 +82,8 @@ ORDER BY 2 DESC;
 
 
 
--- SORU-11: En son alışveriş yapılan kanal (last_order_channel) kırılımında 
--- en çok sipariş alınan kategoriyi getiren sorguyu yazınız.
+-- SORU-11: En son alÃ½Ã¾veriÃ¾ yapÃ½lan kanal (last_order_channel) kÃ½rÃ½lÃ½mÃ½nda 
+-- en Ã§ok sipariÃ¾ alÃ½nan kategoriyi getiren sorguyu yazÃ½nÃ½z.
 SELECT DISTINCT last_order_channel,
     (
         SELECT TOP 1 interested_in_categories_12
@@ -95,15 +95,15 @@ SELECT DISTINCT last_order_channel,
 FROM flo_data_20K f;
 
 
--- SORU-12: En çok alışveriş yapan (ciro bazında) kişinin ID'sini getiren sorguyu yazınız.
+-- SORU-12: En Ã§ok alÃ½Ã¾veriÃ¾ yapan (ciro bazÃ½nda) kiÃ¾inin ID'sini getiren sorguyu yazÃ½nÃ½z.
 SELECT TOP 1 master_id
 FROM flo_data_20K
 GROUP BY master_id
 ORDER BY SUM(customer_value_total_ever_offline + customer_value_total_ever_online) DESC;
 
 
--- SORU-13 & 14: En çok alışveriş yapan (ciro bazında) ilk 100 kişinin alışveriş başına 
--- ortalama cirosunu ve alışveriş yapma gün ortalamasını (alışveriş sıklığını) getiren sorgu.
+-- SORU-13 & 14: En Ã§ok alÃ½Ã¾veriÃ¾ yapan (ciro bazÃ½nda) ilk 100 kiÃ¾inin alÃ½Ã¾veriÃ¾ baÃ¾Ã½na 
+-- ortalama cirosunu ve alÃ½Ã¾veriÃ¾ yapma gÃ¼n ortalamasÃ½nÃ½ (alÃ½Ã¾veriÃ¾ sÃ½klÃ½Ã°Ã½nÃ½) getiren sorgu.
 SELECT 
     D.master_id,
     D.TOPLAM_CIRO,
@@ -125,8 +125,8 @@ FROM
     ) D;
 
 
--- SORU-15: En son alışveriş yapılan kanal (last_order_channel) kırılımında 
--- en çok alışveriş yapan müşteriyi getiren sorguyu yazınız.
+-- SORU-15: En son alÃ½Ã¾veriÃ¾ yapÃ½lan kanal (last_order_channel) kÃ½rÃ½lÃ½mÃ½nda 
+-- en Ã§ok alÃ½Ã¾veriÃ¾ yapan mÃ¼Ã¾teriyi getiren sorguyu yazÃ½nÃ½z.
 SELECT DISTINCT last_order_channel,
     (
         SELECT TOP 1 master_id
@@ -138,7 +138,7 @@ SELECT DISTINCT last_order_channel,
 FROM flo_data_20K f;
 
 
--- SORU-16: En son alışveriş yapan kişinin ID'sini getiren sorguyu yazınız. (Max son tarihe göre)
+-- SORU-16: En son alÃ½Ã¾veriÃ¾ yapan kiÃ¾inin ID'sini getiren sorguyu yazÃ½nÃ½z. (Max son tarihe gÃ¶re)
 SELECT TOP 1 master_id, last_order_date
 FROM flo_data_20K
 ORDER BY last_order_date DESC;
