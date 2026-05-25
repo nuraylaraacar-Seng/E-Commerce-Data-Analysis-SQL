@@ -13,7 +13,7 @@ AÇIKLAMA: Bu proje, 20.000 satýrlýk e-ticaret veri seti (FLO) üzerinde
 
 
 
-SELECT DB_NAME() AS CurrentDatabase;
+SELECT DB_NAME() AS CurrentDatabase; 
  
 SELECT name
 FROM sys.databases;
