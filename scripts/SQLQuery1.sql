@@ -11,10 +11,7 @@ AÇIKLAMA: Bu proje, 20.000 satýrlýk e-ticaret veri seti (FLO) üzerinde
 =======================================================================
 */
 
-hwRFRHWUIHIUGRGRHIPGWRBJK
-
-          OFFF
-OFF
+OFF OFF VERYANSIN EDEMEM KADERE
 SELECT DB_NAME() AS CurrentDatabase; 
  
 SELECT name
