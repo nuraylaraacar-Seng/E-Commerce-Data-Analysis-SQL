@@ -12,7 +12,7 @@ AÇIKLAMA: Bu proje, 20.000 satýrlýk e-ticaret veri seti (FLO) üzerinde
 */
 
 
-SELECT DB_NAME() AS CurrentDatabase; fasvgafgwrfwhrhrhr nuray lara en iyi yazılımcı
+SELECT DB_NAME() AS CurrentDatabase; fasvgafgwrfwhrhrhr nuray lara en iyi yazılımcı awsdjsjssj 
  
 SELECT name
 FROM sys.databases;
