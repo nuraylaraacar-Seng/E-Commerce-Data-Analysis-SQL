@@ -51,26 +51,26 @@ SELECT
   ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline),2)
 FROM flo_data_20K
 GROUP BY store_type;
---SORU-7:Yýl kýrýlýmýnda alýþveriþ sayýlarýný getirecek sorguyu yazýnýz (Yýl olarak müþterinin ilk alýþveriþ tarihi (first_order_date) yýlýnI BAZ ALINIZ)
+-- SORU-7: Yıl kırılımında alışveriş sayılarını getirecek sorguyu yazınız (Yıl olarak müşterinin ilk alışveriş tarihi (first_order_date) yılını BAZ ALINIZ).
 SELECT 
  YEAR(first_order_date) YIL,
  SUM(order_num_total_ever_offline+order_num_total_ever_online)
 FROM flo_data_20K
 GROUP BY YEAR(first_order_date)
 --ORDER BY  2 desc
---SORU-8: En son alýþveriþ yapýlan kanal kýrýlýmýnda alýþveriþ baþýna ortalama ciroyu hesaplayacak sorguyu yazýnýz. 
+-- SORU-8: En son alışveriş yapılan kanal kırılımında alışveriş başına ortalama ciroyu hesaplayacak sorguyu yazınız.
 SELECT last_order_channel,
   ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline)/SUM(order_num_total_ever_offline+order_num_total_ever_online),2)
 FROM flo_data_20K
 GROUP BY last_order_channel;
---SORU-9:. Son 12 ayda en çok ilgi gören kategoriyi getiren sorguyu yazýnýz
+-- SORU-9: Son 12 ayda en çok ilgi gören kategoriyi getiren sorguyu yazınız.
 SELECT 
  interested_in_categories_12,
  COUNT(*) FREKANS_BILGIFISI
 FROM flo_data_20K
 GroUP BY interested_in_categories_12
 ORDER BY 2 DESC;
---SORU- 10. En çok tercih edilen store_type bilgisini getiren sorguyu yazýnýz. 
+-- SORU-10: En çok tercih edilen store_type bilgisini getiren sorguyu yazınız.
 SELECT TOP 1
  store_type,
  COUNT(*) FREKANS_BILGIFISI
