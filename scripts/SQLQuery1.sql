@@ -45,7 +45,7 @@ SELECT
 FROM flo_data_20K
 GROUP BY last_order_channel
 
---SORU-6:STORE TYPE  KIRLIMINDA ELDE EDÝLEN TOPLAM CÝROYU GETÝREN SORGUYU YAZINIZ. 
+--SORU-6:STORE TYPE  KIRLIMINDA ELDE EDÝLEN TOPLAM CİROYU GETİREN SORGUYU YAZINIZ. 
 SELECT 
   store_type MAGAZA_TURU,
   ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline),2)
@@ -137,7 +137,7 @@ SELECT DISTINCT last_order_channel,
 FROM flo_data_20K f;
 
 
--- SORU-16: En son alýþveriþ yapan kiþinin ID'sini getiren sorguyu yazýnýz. (Max son tarihe göre)
+-- SORU-16: En son alışveriş yapan kişinin ID'sini getiren sorguyu yazınız. (Max son tarihe göre)
 SELECT TOP 1 master_id, last_order_date
 FROM flo_data_20K
 ORDER BY last_order_date DESC;
