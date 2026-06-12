@@ -81,8 +81,8 @@ ORDER BY 2 DESC;
 
 
 
--- SORU-11: En son alýþveriþ yapýlan kanal (last_order_channel) kýrýlýmýnda 
--- en çok sipariþ alýnan kategoriyi getiren sorguyu yazýnýz.
+-- SORU-11: En son alışveriş yapılan kanal (last_order_channel) kırılımında 
+-- en çok sipariş alınan kategoriyi getiren sorguyu yazınız.
 SELECT DISTINCT last_order_channel,
     (
         SELECT TOP 1 interested_in_categories_12
@@ -94,15 +94,15 @@ SELECT DISTINCT last_order_channel,
 FROM flo_data_20K f;
 
 
--- SORU-12: En çok alýþveriþ yapan (ciro bazýnda) kiþinin ID'sini getiren sorguyu yazýnýz.
+-- SORU-12: En çok alışveriş yapan (ciro bazında) kişinin ID'sini getiren sorguyu yazınız.
 SELECT TOP 1 master_id
 FROM flo_data_20K
 GROUP BY master_id
 ORDER BY SUM(customer_value_total_ever_offline + customer_value_total_ever_online) DESC;
 
 
--- SORU-13 & 14: En çok alýþveriþ yapan (ciro bazýnda) ilk 100 kiþinin alýþveriþ baþýna 
--- ortalama cirosunu ve alýþveriþ yapma gün ortalamasýný (alýþveriþ sýklýðýný) getiren sorgu.
+-- SORU-13 & 14: En çok alışveriş yapan (ciro bazında) ilk 100 kişinin alışveriş başına 
+-- ortalama cirosunu ve alışveriş yapma gün ortalamasını (alışveriş sıklığını) getiren sorgu.
 SELECT 
     D.master_id,
     D.TOPLAM_CIRO,
@@ -124,8 +124,8 @@ FROM
     ) D;
 
 
--- SORU-15: En son alýþveriþ yapýlan kanal (last_order_channel) kýrýlýmýnda 
--- en çok alýþveriþ yapan müþteriyi getiren sorguyu yazýnýz.
+-- SORU-15: En son alışveriş yapılan kanal (last_order_channel) kırılımında 
+-- en çok alışveriş yapan müşteriyi getiren sorguyu yazınız.
 SELECT DISTINCT last_order_channel,
     (
         SELECT TOP 1 master_id
