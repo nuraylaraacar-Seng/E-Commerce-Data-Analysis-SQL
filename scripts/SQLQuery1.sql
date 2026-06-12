@@ -4,10 +4,10 @@ PROJE ADI: E-Ticaret Veri Analizi ve Müşteri Davranışı Modelleme
 AÇIKLAMA: Bu proje, 20.000 satırlık e-ticaret veri seti (FLO) üzerinde 
           gerçekleştirilmiş kapsamlı veri analizi çalışmalarını içermektedir. 
           Geliþmiş SQL sorguları (Subqueries, Aggregations vb.) kullanılarak; 
-          - Müşteri Yaþam Boyu Deðeri (CLTV) hesaplama altyapýsý,
-          - Sipariþ frekansý ve kanal bazlý ciro analizleri,
-          - Ýþ Zekasý (BI) ve karar destek sistemleri için temel KPI 
-            metrikleri oluþturulmuþtur.
+          - Müşteri Yaþam Boyu Değeri (CLTV) hesaplama altyapısı,
+          - Sipariş frekansı ve kanal bazlı ciro analizleri,
+          - İş Zekası (BI) ve karar destek sistemleri için temel KPI 
+            metrikleri oluşturulmuştur.
 =======================================================================
 */
 
@@ -24,15 +24,15 @@ FROM INFORMATION_SCHEMA.TABLES
 
 SELECT *FROM flo_data_20K
 
---SORU-1:Kaç Farklý müþterinin alýþveriþ yaptýðýný gösterecek sorguyu yazýnýz.
+--SORU-1:Kaç Farklı müşterinin alışveriş yaptığını gösterecek sorguyu yazınız.
 SELECT COUNT(DISTINCT(master_id))
 FROM flo_data_20K;
---Soru-2:Toplam alýþveriþ sayýsý ve cüroyu bulunuz?
+--Soru-2:Toplam -ve cüroyu bulunuz?
 SELECT
   SUM(order_num_total_ever_offline+order_num_total_ever_online) AS TOPLAM_SIPARIS_SAYÝSÝ,
   ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline),2) AS TOPLAM_CIRO
 FROM flo_data_20K;
---Soru-3:Alýþveriþ baþýna düþen ortalam ciroyu bulunuz
+--Soru-3 Alışveriş payına düşen ortalam ciroyu bulunuz.
 SELECT 
  ROUND(SUM(customer_value_total_ever_online+customer_value_total_ever_offline)/SUM(order_num_total_ever_offline+order_num_total_ever_online),2)
 FROM flo_data_20K;
