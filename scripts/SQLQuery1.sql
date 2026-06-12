@@ -1,10 +1,10 @@
 /*
 =======================================================================
-PROJE ADI: E-Ticaret Veri Analizi ve Müþteri Davranýþý Modelleme
-AÇIKLAMA: Bu proje, 20.000 satýrlýk e-ticaret veri seti (FLO) üzerinde 
-          gerçekleþtirilmiþ kapsamlý veri analizi çalýþmalarýný içermektedir. 
-          Geliþmiþ SQL sorgularý (Subqueries, Aggregations vb.) kullanýlarak; 
-          - Müþteri Yaþam Boyu Deðeri (CLTV) hesaplama altyapýsý,
+PROJE ADI: E-Ticaret Veri Analizi ve Müşteri Davranışı Modelleme
+AÇIKLAMA: Bu proje, 20.000 satırlık e-ticaret veri seti (FLO) üzerinde 
+          gerçekleştirilmiş kapsamlı veri analizi çalışmalarını içermektedir. 
+          Geliþmiş SQL sorguları (Subqueries, Aggregations vb.) kullanılarak; 
+          - Müşteri Yaþam Boyu Deðeri (CLTV) hesaplama altyapýsý,
           - Sipariþ frekansý ve kanal bazlý ciro analizleri,
           - Ýþ Zekasý (BI) ve karar destek sistemleri için temel KPI 
             metrikleri oluþturulmuþtur.
